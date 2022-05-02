@@ -1,10 +1,11 @@
 .sideBar {
     min-height: 100vh !important;
+    max-height: 100vh !important;
     min-width: 287px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     border-right: 1px solid;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -14,11 +15,14 @@
     box-sizing: border-box;
     margin-right: 50px;
     z-index: 1000;
-    padding-top: 20px !important;
-    padding-bottom:40px !important;
     box-sizing: border-box;
     box-shadow: 4px 4px 4px 3px rgba(8, 6, 8, 0.6);
-
+}
+.sideBarItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
 }
 .items{
     display: flex;
@@ -30,23 +34,24 @@
     list-style: none;
     color: white;
     display:flex;
-    justify-content: space-between;
     flex-direction: column;
     align-items: flex-end;
+    min-height: 100%;
 }
 .items li{
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top:30px;
     font-size: 20px;
+    margin-top: 5%;
+    margin-bottom:5%;
 }
 .textDecoration{
     text-decoration: none;
     color: white;
 }
 .itemSide{
-    margin-top: 10px;
+    margin-bottom: 5%;
     
 }
 .itemSide button{
@@ -54,8 +59,8 @@
 }
 .user{
     list-style: none;
-    margin-top:10%;
     color:white;
+    margin-top: 15%;
 }
 
 @media (min-width: 300px) and (max-width: 767.98px) {

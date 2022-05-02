@@ -9,6 +9,7 @@ import { AiOutlineUser } from "react-icons/ai";
 const SideBar = () => {
   return (
     <div className={style.sideBar}>
+      <div className = {style.sideBarItem}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="178.996"
@@ -49,6 +50,8 @@ const SideBar = () => {
         <li>m.villaverde@flexi.mx</li>
         <li>Administrador</li>
       </ul>
+      </div>
+      <div className = {style.sideBarItem}>
       <div className={style.items}>
         <ul>
           <li>
@@ -558,6 +561,8 @@ const SideBar = () => {
       <div className={style.itemSide}>
         <button>Cerrar sesiòn</button>
       </div>
+      </div>
+      
     </div>
   );
 };
