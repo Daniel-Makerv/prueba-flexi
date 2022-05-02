@@ -2,14 +2,14 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import { useState, useEffect } from "react";
 import style from "./styles.module.css";
-
+import { Row, Col, Container, ListGroup } from "react-bootstrap";
 //react icons
 import { AiOutlineUser } from "react-icons/ai";
 
 const SideBar = () => {
   return (
-    <div className={style.sideBar}>
-      <div className = {style.sideBarItem}>
+    <Row className={style.sideBar}>
+      <Col sm = {4} md = {4} lg = {4} className = {style.sideBarItemP}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="178.996"
@@ -50,8 +50,8 @@ const SideBar = () => {
         <li>m.villaverde@flexi.mx</li>
         <li>Administrador</li>
       </ul>
-      </div>
-      <div className = {style.sideBarItem}>
+      </Col>
+      <Col sm = {8} md = {8} lg = {8} className = {style.sideBarItemI}>
       <div className={style.items}>
         <ul>
           <li>
@@ -556,14 +556,15 @@ const SideBar = () => {
             Reportes
             </Link>
           </li>
+          <li>
+          <button>Cerrar sesiòn</button>
+          </li>
         </ul>
       </div>
-      <div className={style.itemSide}>
-        <button>Cerrar sesiòn</button>
-      </div>
-      </div>
       
-    </div>
+      </Col>
+      
+    </Row>
   );
 };
 

@@ -4,8 +4,8 @@ import style from "./styles.module.css";
 const Chat = () => {
     let lista = [1,2,3,4,5,6,7,1,1,1,1,1,1,1,1,1,1,1,1,11,11,1,11,1,11,1,1,1,1,1,111,1,1,1,1,1];
   return (
-    <Container>
-      <Row>
+    <Container style = {{maxHeight:"100vh !important"}}>
+      <Row style = {{maxHeight:"100vh !important"}}>
       <nav className = {style.chatBar}>
                 <h2 style = {{marginLeft:"8%"}}>Chats</h2>
                 <div style = {{display: "flex", justifyContent: "space-between", alignItems:"center"}}>
