@@ -10,8 +10,9 @@ const Chat = () => {
                 <h2 style = {{marginLeft:"8%"}}>Chats</h2>
                 <div style = {{display: "flex", justifyContent: "space-between", alignItems:"center"}}>
                 Empleado
+                <img className={style.profileImg} style = {{marginRight:"15px", marginLeft:"15px"}} src="https://areajugones.sport.es/wp-content/uploads/2022/03/tanjiro-kimetsu-1080x609.webp"/>
                 </div>
-                <img className={style.profileImg} style = {{marginRight:"15px"}} src="https://areajugones.sport.es/wp-content/uploads/2022/03/tanjiro-kimetsu-1080x609.webp"/>
+                
                
             </nav>
         <Col s={3} md={3} lg={3} className = {style.chatList}>
@@ -20,7 +21,9 @@ const Chat = () => {
              lista.map(item=>
                 <ListGroup.Item style = {{}}>
                 <ul className={style.profile}>
-                  <li className={style.profileImg}></li>
+                  <li>
+                  <img className={style.profileImg} style = {{marginRight:"15px", marginLeft:"15px"}} src="https://areajugones.sport.es/wp-content/uploads/2022/03/tanjiro-kimetsu-1080x609.webp"/>
+                  </li>
                   <li className={style.profileTitles}>
                     <span>User</span>
                     <p>descripcion.........</p>

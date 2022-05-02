@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import { useState, useEffect } from "react";
 import style from "./styles.module.css";
 
@@ -51,6 +52,7 @@ const SideBar = () => {
       <div className={style.items}>
         <ul>
           <li>
+          <Link to = "/users" className = {style.textDecoration}>
           <svg id="_005-user" data-name="005-user" xmlns="http://www.w3.org/2000/svg" width="17.199" height="17.199" viewBox="0 0 17.199 17.199">
   <g id="Grupo_1440" data-name="Grupo 1440" transform="translate(0)">
     <path id="Trazado_2785" data-name="Trazado 2785" d="M14.681,11.119a8.567,8.567,0,0,0-3.268-2.05,4.972,4.972,0,1,0-5.626,0A8.613,8.613,0,0,0,0,17.2H1.344a7.256,7.256,0,1,1,14.512,0H17.2A8.544,8.544,0,0,0,14.681,11.119ZM8.6,8.6a3.628,3.628,0,1,1,3.628-3.628A3.632,3.632,0,0,1,8.6,8.6Z" transform="translate(0)" fill="#fff"/>
@@ -58,8 +60,10 @@ const SideBar = () => {
 </svg>
 
             Usuarios
+            </Link>
           </li>
           <li>
+          <Link to = "/news" className = {style.textDecoration}>
             <svg
               id="_004-newspaper"
               data-name="004-newspaper"
@@ -119,8 +123,10 @@ const SideBar = () => {
               />
             </svg>
             Noticias
+            </Link>
           </li>
           <li>
+          <Link to = "/events" className = {style.textDecoration}>
             <svg
               id="_003-calendar"
               data-name="003-calendar"
@@ -225,8 +231,10 @@ const SideBar = () => {
               </g>
             </svg>
             Eventos
+            </Link>
           </li>
           <li>
+          <Link to = "/chat" className = {style.textDecoration}>
             <svg
               id="_006-chat"
               data-name="006-chat"
@@ -292,8 +300,10 @@ const SideBar = () => {
               </g>
             </svg>
             Mensajes
+            </Link>
           </li>
           <li>
+          <Link to = "/learning" className = {style.textDecoration}>
             <svg
               id="_001-book"
               data-name="001-book"
@@ -324,8 +334,10 @@ const SideBar = () => {
               />
             </svg>
             E-Learning
+            </Link>
           </li>
           <li>
+          <Link to = "/services" className = {style.textDecoration}>
             <svg
               id="_008-to-do-list"
               data-name="008-to-do-list"
@@ -392,8 +404,10 @@ const SideBar = () => {
               />
             </svg>
             Servicios
+            </Link>
           </li>
           <li>
+          <Link to = "/improves" className = {style.textDecoration}>
             <svg
               id="_002-happy"
               data-name="002-happy"
@@ -464,8 +478,10 @@ const SideBar = () => {
               </g>
             </svg>
             Mejoras
+            </Link>
           </li>
           <li>
+          <Link to = "/reports" className = {style.textDecoration}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="15.66"
@@ -535,6 +551,7 @@ const SideBar = () => {
               </g>
             </svg>
             Reportes
+            </Link>
           </li>
         </ul>
       </div>

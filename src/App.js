@@ -8,11 +8,21 @@ import Chat from './components/Chat';
 function App() {
   return (
     <React.Fragment>
-      <SideBar/>
+      
     <Router>
     <Routes>
-          <Route exact path="/" element={<Login/>}/>
-          <Route path = "/chat" element={<Chat/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path = "/users" element={<SideBar/>}/>
+          <Route path = "/news" element={<SideBar/>}/>
+          <Route path = "/events" element={<SideBar/>}/>
+          <Route path = "/chat" element={
+          [<SideBar/>,
+          <Chat/>]
+          }/>
+          <Route path = "/learning" element={<SideBar/>}/>
+          <Route path = "/services" element={<SideBar/>}/>
+          <Route path = "/improves" element={<SideBar/>}/>
+          <Route path = "/reports" element={<SideBar/>}/>
     </Routes>
     </Router>
     </React.Fragment>
