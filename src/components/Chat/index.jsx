@@ -4,7 +4,7 @@ import style from "./styles.module.css";
 const Chat = () => {
     let lista = [1,2,3,4,5,6,7,1,1,1,1,1,1,1,1,1,1,1,1,11,11,1,11,1,11,1,1,1,1,1,111,1,1,1,1,1];
   return (
-      <Row  style = {{minHeight:"98vh",maxHeight:"98vh", boxsizing:"border-box"}}>
+      <Row  style = {{minHeight:"98vh",maxHeight:"98vh", boxSizing:"border-box"}}>
       <nav className = {style.chatBar}>
                 <h2 style = {{marginLeft:"8%"}}>Chats</h2>
                 <div style = {{display: "flex", justifyContent: "space-between", alignItems:"center"}}>
