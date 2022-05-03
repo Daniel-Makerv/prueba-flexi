@@ -88,3 +88,9 @@
         min-width: 200px;
     }
  }
+ @media (max-height:700px) {
+    .items li{
+        min-height:40px;
+        max-height:40px;
+    }
+ }
