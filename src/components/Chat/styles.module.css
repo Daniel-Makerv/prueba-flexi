@@ -178,3 +178,21 @@
 img {
 	width: 100%;
 }
+@media (max-height: 700px) {
+    .chat{
+        min-height: 96%;
+		max-height: 96%;
+    }
+ }
+ @media (min-height: 700px) and (max-height:720px) {
+    .chat{
+        min-height: 98%;
+		max-height: 98%;
+    }
+ }
+ @media (min-height: 720px) and (max-height:800px) {
+    .chat{
+        min-height: 98.5%;
+		max-height: 98.5%;
+    }
+ }
