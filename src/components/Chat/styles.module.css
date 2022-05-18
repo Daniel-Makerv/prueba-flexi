@@ -2,23 +2,49 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
+	align-content: center;
     list-style: none;
-    padding-left: 12px !important;
-    margin-right: 12px !important; 
-    max-height: 55px;
-    padding-top: 20px !important;
 	box-sizing: border-box;
+	padding-top: 8px !important;
+	max-height:50px;
 }
 .profileImg{
     background-color: red;
     border-radius: 90%;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
 
 }
 .profileActions{
     display: flex;
     justify-content: space-between;
+}
+.profileActions:hover{
+    background-color: red;
+	border-radius: 90%;
+}
+.profileTitles{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin-right: 5px;
+	padding-top: 20px !important;
+	max-height:50px;
+}
+.profileTitles span{
+ font-size: 15px;
+}
+.profileTitles p{
+	font-size: 10px;
+   }
+   .profileTitles:hover{
+	   color:#0844c7;
+   }
+.actionDelete{
+
+	height: 40px;
+	width: 40px;
 }
 
 .chatBar{
@@ -77,6 +103,32 @@
   font-size: 14px;
    background-color: #0844c7;
    color:white;
+}
+.searchFormText{
+	max-width: 65%;
+	height: 35px;
+	border-radius: 15px 50px 30px;
+    border: .5px solid rgb(0, 0, 0);
+	padding-left: 20px !important;
+}
+.searchFormSend{
+	margin-left: 10px;
+	position: relative;
+  display: inline-block;
+  padding: 0.5em 1em !important;
+  border: 0;
+  border-radius: 30px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+   background-color: #0844c7;
+   color:white;
+}
+.searchFormSend:hover{
+	background-color: rgb(239, 7, 7);
+	color:white;
 }
 .chatFormSend:hover{
 	background-color: rgb(239, 7, 7);
