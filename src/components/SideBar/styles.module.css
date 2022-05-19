@@ -1,7 +1,7 @@
 .sideBar {
     min-height: 100vh !important;
     max-height: 100vh !important;
-    min-width: 287px;
+    min-width: 267px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,7 @@
     background-color: red;
     border:1px solid rgb(193, 15, 15);
     box-sizing: border-box;
-    margin-right: 50px;
+    margin-right: 30px !important;
     z-index: 1000;
     box-sizing: border-box;
     box-shadow: 4px 4px 4px 3px rgba(8, 6, 8, 0.6);
@@ -23,8 +23,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 35% !important;
-    max-height: 35% !important;
+    min-height: 30% !important;
+    max-height: 30% !important;
+    margin-top:20px !important;
 }
 .sideBarItemI{
     display: flex;
@@ -73,7 +74,7 @@
 .user{
     list-style: none;
     color:white;
-    margin-top: 50%;
+    margin-top: 40%;
 }
 .userName{
     font-size: 1.3em;

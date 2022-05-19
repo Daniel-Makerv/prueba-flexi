@@ -1,4 +1,4 @@
-import {GET_MESSAGES,SEND_MESSAGE, GET_EMPLOYEE,GET_PENDING,REMOVE_MESSAGES} from './constants';
+import {GET_MESSAGES,SEND_MESSAGE, GET_EMPLOYEE,GET_PENDING,REMOVE_MESSAGES, GET_EMPLOYEES} from './constants';
 import io from 'socket.io-client';
 const axios = require('axios').default;
 const URL = "http://localhost:3001/";
@@ -30,6 +30,16 @@ export function getEmployee(id){
         axios.get(`${URL}directory/${id}`)
         .then(res=>{
             dispatch({type: GET_EMPLOYEE,payload:res.data})
+        });
+    }
+    
+}
+export function getEmployees(skip,search){
+    console.log(skip)
+    return function(dispatch){
+        axios.get(`${URL}directory${skip?"?skip="+skip:""}${search?"?search="+search:""}`)
+        .then(res=>{
+            dispatch({type: GET_EMPLOYEES,payload:res.data})
         });
     }
     

@@ -5,6 +5,7 @@ import './App.css';
 import Login from './components/Login';
 import SideBar from './components/SideBar';
 import Chat from './components/Chat';
+import Users from './components/Users';
 function App() {
   return (
     <React.Fragment>
@@ -12,7 +13,7 @@ function App() {
     <Router>
     <Routes>
           <Route path="/login" element={<Login/>}/>
-          <Route path = "/users" element={<SideBar/>}/>
+          <Route path = "/users" element={[<SideBar/>,<Users/>]}/>
           <Route path = "/news" element={<SideBar/>}/>
           <Route path = "/events" element={<SideBar/>}/>
           <Route path = "/chat" element={

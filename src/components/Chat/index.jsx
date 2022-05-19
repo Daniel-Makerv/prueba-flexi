@@ -67,6 +67,7 @@ const handleOnClick = (e)=>{
   setShow({...show,messages:true,user:true})
   setTimeout(function(){
     dispatch(getMessages(e.target.id));
+    setState(e.target.id)
      },1600);
 }
   return (

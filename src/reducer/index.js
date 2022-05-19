@@ -2,6 +2,7 @@ import {
   GET_MESSAGES,
   SEND_MESSAGE,
   GET_EMPLOYEE,
+  GET_EMPLOYEES,
   GET_PENDING,
   REMOVE_MESSAGES
 } from '../actions/constants.js';
@@ -10,6 +11,7 @@ const initialState = {
    messages:[],
    sendMessage:{},
    employee: [],
+   employees: [],
    pending: [],
 }
 export default function reducer(state = initialState, { type, payload }) {
@@ -31,6 +33,11 @@ export default function reducer(state = initialState, { type, payload }) {
                 ...state,
                 employee: [payload.employee]
             }
+            case GET_EMPLOYEES:
+                return{
+                    ...state,
+                    employees: payload.employees
+                }
         case GET_PENDING:
             return{
                 ...state,

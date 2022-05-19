@@ -46,9 +46,7 @@ const SideBar = () => {
         </g>
       </svg>
       <ul className= {style.user}>
-        <li className = {style.userName}>Mario Villaverde</li>
-        <li>m.villaverde@flexi.mx</li>
-        <li>Administrador</li>
+        <li><h3>Administrador</h3></li>
       </ul>
       </Col>
       <Col sm = {8} md = {8} lg = {8} className = {style.sideBarItemI}>
