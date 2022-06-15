@@ -1,61 +1,62 @@
 import React, { useState } from "react";
 import style from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import Modal  from '../Modal';
+import ModalGalery  from '../Modal/Galery';
+import ModalDeleted  from '../Modal/Delete';
+import ControlledForm  from '../ControlledForm/Galery';
+import Table from '../DinamicTable';
 function Pagination(props) {
   const [currentPage, setcurrentPage] = useState(1);
   const [skip, setSkip] = useState(2);
-  const [itemsPerPage, setitemsPerPage] = useState(5);
+  const [itemsPerPage, setitemsPerPage] = useState(7);
   const dispatch = useDispatch();
   const [pageNumberLimit, setpageNumberLimit] = useState(10);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(10);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
-
+  const [show, setShow] = useState(false);
   const handleClick = (e) => {
     e.preventDefault();
     setcurrentPage(Number(e.target.id));
   };
-  const renderData = (title,data) => {
+  const handleModal = (e) => {
+    e.preventDefault();
+    setShow(true)
+  };
+  const renderData = (title,headers,data,children, action, titleB) => {
+    console.log(titleB)
+    console.log("soy render data")
+    console.log(action)
     return (
-        <div className={style.container} style = {{maxWidth: "97%", maxHeight:"80vh", marginLeft:"0px"}}>
-          <table className = {style.tab}>
-<thead>
-  <tr style = {{padding:"40px"}}>
-    <th scope="col">Nomina</th>
-    <th scope="col">Nombre</th>
-    <th scope="col">Correo</th>
-    <th scope="col">Correo Personal</th>
-    <th scope="col">Telefono</th>
-    <th scope="col">Telefono Personal</th>
-    <th scope="col">Estatus</th>
-    <th scope="col">Imagen</th>
-    <th scope="col">Ubicación</th>
-    <th scope="col">Puesto</th>
-    <th scope="col">Extensión</th>
-    <th scope="col">Retirado</th>
-  </tr>
-</thead>
-<tbody className = {style.scroll+" table-active"}>
-        {data.length>0&&data.map(item=>{
-       return   <tr>
-    <td>{item.nomina}</td>
-    <td>{item.name}</td>
-    <td>{item.imageUrl}</td>
-    <td>{item.location}</td>
-    <td>{item.job}</td>
-    <td >{item.nomina}</td>
-    <td>{item.name}</td>
-    <td>{item.imageUrl}</td>
-    <td>{item.location}</td>
-    <td>{item.job}</td>
-    <td>{item.job}</td>
-    <td>{item.job}</td>
+          <Table headers = {headers}>
+        {data.length>0&&data.map((item,index)=>{
+       return   <tr key = {index}>
+    
+    <td style = {{minWidth:"150px", }} key = {index}> 
+    {
+      title === 'E-Event' &&
+      <ModalGalery title = {'Galeria'} item = {item} action = {{createM:action.createM, refreshM:action.refreshM, deleteM:action.deleteM}} titleB = {'Agregar'}><ControlledForm/></ModalGalery>
+    }
+   { title !== 'Feedback' && title !== 'Servicios'?
+    <Modal title = {title} item = {item} action = {{update:action.update, refresh:action.refresh}} titleB = {titleB}>{children}</Modal>
+    :
+    null
+    }
+     <ModalDeleted title = {title} item = {item} action = {{delete:action.delete, refresh:action.refresh}} titleB = {"Eliminar"}>
+    <h1>¿Estás seguro(a)?</h1>
+       <p>Los datos eliminados no se podrán recuperar.</p>
+    </ModalDeleted>
+    </td>
+     { Object.keys(item).map(prop=>prop==='id' || prop==='filters'?null:
+     !prop.includes('image') && !prop.includes('Image') ? <td><p>{item[prop]}</p></td>
+     :<td><img style = {{maxWidth:"60px", maxHeight:"60px"}} src = {item[prop]} /></td>
+     )
+     }
   </tr>
           
           })
     }
-</tbody>
-</table>
-</div>
+</Table>
     );
   };
   const pages = [];
@@ -89,7 +90,6 @@ function Pagination(props) {
     console.log(maxPageNumberLimit)
     if (currentPage + 1 > maxPageNumberLimit) {
         console.log("entro aqui")
-        dispatch(props.getEmployees(skip))
       setmaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit + pageNumberLimit);
       setSkip(skip++);
@@ -116,9 +116,11 @@ function Pagination(props) {
   }
 
   return (
-    <div className={style.container}>
-    {currentItems.length>0?renderData(props.title,currentItems):null}
-      <ul className={style.pagination}>
+    <div style ={{minWidth:"93%",maxWidth:"93%" ,margin:"auto"}}>
+    <div  className={style.container}>
+    {currentItems.length>0?renderData(props.title,props.headers,currentItems, props.children, props.action, props.titleB):null}
+    </div>
+    <ul className={style.pagination}>
         <li>
           <button onClick={handlePrevbtn} disabled={currentPage === pages[0] ? true : false}>
             Prev

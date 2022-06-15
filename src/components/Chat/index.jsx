@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import { FiTrash } from 'react-icons/fi';
 import { Row, Col, Container, ListGroup } from "react-bootstrap";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,7 +70,7 @@ const handleOnClick = (e)=>{
      },1600);
 }
   return (
-      <Row  style = {{minHeight:"98vh",maxHeight:"98vh", boxSizing:"border-box"}}>
+      <Row  style = {{minHeight:"98vh",maxHeight:"98vh", boxSizing:"border-box", marginLeft:"30px"}}>
       <nav className = {style.chatBar}>
       <form className = {style.chatForm} onSubmit={e=>handleSearch(e)}>
           <input onChange = {e=>handleOnChange(e.target.value)} value ={input} name = "search" className = {style.searchFormText} type = "text" placeholder = "Buscar empleado" />
@@ -171,7 +170,7 @@ const handleOnClick = (e)=>{
    </svg>
  </span>
  <span className={style.name}>{item.rol}</span>
- <span className={style.time}>{new Date(item.messageDate).getHours() +":"+new Date(item.messageDate).getMinutes()}</span>
+ <span className={style.time}>{item.messageDate.split('T')[0]}</span>
  </div>
  <div className={style.content}>{item.content}</div>
 </div>
@@ -180,10 +179,10 @@ const handleOnClick = (e)=>{
  <div className={style.content}>{item.content}</div>
  <div className={style.sender}>
      <span >
-         <img className = {style.profileImg} style = {{marginLeft:"25px",marginRight:"30px"}} src="https://areajugones.sport.es/wp-content/uploads/2022/03/tanjiro-kimetsu-1080x609.webp"/>
+         <img className = {style.profileImg} style = {{marginLeft:"25px",marginRight:"30px"}} src={show.user&&employee[0]&&employee[0].imageUrl}/>
      </span>
      <span className = {style.name} >{item.rol}</span>
-     <span className={style.time} style = {{marginLeft:"25px"}}>{new Date(item.messageDate).getHours() +":"+new Date(item.messageDate).getMinutes()}</span>
+     <span className={style.time} style = {{marginLeft:"25px"}}>{item.messageDate.split('T')[0]}</span>
  </div>
            </div>
            
@@ -192,10 +191,6 @@ const handleOnClick = (e)=>{
           <div className={style.msg + " " + style.msg_to}>
  <div className={style.content}>Bienvenido al chat Flexy!</div>
  <div className={style.sender}>
-     <span >
-         <img className = {style.profileImg} style = {{marginLeft:"25px",marginRight:"30px"}} src="https://areajugones.sport.es/wp-content/uploads/2022/03/tanjiro-kimetsu-1080x609.webp"/>
-     </span>
-     <span className = {style.name} >Admin</span>
      <span className={style.time} style = {{marginLeft:"25px"}}></span>
  </div>
            </div>

@@ -1,7 +1,7 @@
 .sideBar {
     min-height: 100vh !important;
     max-height: 100vh !important;
-    min-width: 267px;
+    min-width: 270px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,6 @@
     background-color: red;
     border:1px solid rgb(193, 15, 15);
     box-sizing: border-box;
-    margin-right: 30px !important;
     z-index: 1000;
     box-sizing: border-box;
     box-shadow: 4px 4px 4px 3px rgba(8, 6, 8, 0.6);
@@ -78,6 +77,21 @@
 }
 .userName{
     font-size: 1.3em;
+}
+.logout{
+    margin-top: 5px;
+    font-size: 17px;
+    text-align: left;
+    position: relative;
+    display: inline-block;
+    padding: .5em 1em;
+    border: 0;
+    border-radius: 30px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 }
 @media (min-width: 300px) and (max-width: 767.98px) {
     .sideBar{

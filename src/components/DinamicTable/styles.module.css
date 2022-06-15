@@ -1,0 +1,18 @@
+td{
+    min-height: 50px !important;
+    max-height: 50px !important;
+    overflow:hidden;
+    text-align: center;
+}
+tr{
+    font-size: 13px;
+}
+p{
+    min-height: 40px !important;
+    max-height: 40px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+    margin:auto;
+    text-align: center;
+    overflow:hidden;
+}

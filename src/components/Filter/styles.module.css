@@ -1,0 +1,25 @@
+.container{
+    overflow: hidden;
+    overflow-y:auto;
+    scroll-behavior: smooth;
+    max-height: 170px;
+   
+    padding:0;
+    
+}
+.container::-webkit-scrollbar {
+    width: 6px; 
+    max-height: 8px;
+    
+}
+  .container::-webkit-scrollbar-thumb {
+      background: rgb(239, 7, 7);
+      border-radius: 0.25rem;
+  }
+.row{
+    align-items: center;
+    font-size: 12px;
+    margin:0;
+
+    
+}

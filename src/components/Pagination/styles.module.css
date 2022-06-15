@@ -4,7 +4,6 @@
     gap: 50px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     list-style: none;
-    margin-top: 30px;
 }
 .pagination {
     list-style: none;
@@ -50,25 +49,13 @@
     overflow-y:auto;
     overflow-x:auto;
 }
-.tableD{
 
-}
-thead{
-    position:-webkit-sticky;
-    position: sticky;
-    top: 0;
-    bottom: 0;
-    background-color: rgb(255, 255, 255);
-}
-tbody{
-    background-color: rgb(252, 252, 246);
-    max-height: 40vh;
-}
 .container{
     overflow: hidden;
     overflow-x:auto;
     scroll-behavior: smooth;
-    max-height: 90vh;
+    min-height: 80vh !important;
+    max-height: 80vh !important;
     
 }
 .container::-webkit-scrollbar {
@@ -79,22 +66,3 @@ tbody{
       background: rgb(239, 7, 7);
       border-radius: 0.25rem;
   }
-.tab{
-    overflow: hidden;
-    overflow-y:auto;
-    overflow-x:auto;
-    max-height: 80vh;
-    min-height: 80vh;
-    min-width: 100%;
-}
-
-tr th{
- text-align: center;
- font-size: 15px;
-}
-tr td{
-    text-align: center;
-    border-top: 1px solid;
-    border-color: rgba(187, 183, 183, 0.411);
-    font-size: 12px;
-   }

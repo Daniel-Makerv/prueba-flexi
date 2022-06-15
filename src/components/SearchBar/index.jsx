@@ -17,7 +17,7 @@ const SearchBar = ()=>{
         if(value === ""){
             dispatch(getEmployees())
         }else{
-        dispatch(getEmployees(null,input))
+            dispatch(getEmployees(null,null,value))
         }
     };
   

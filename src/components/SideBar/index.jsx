@@ -7,6 +7,7 @@ import { Row, Col, Container, ListGroup } from "react-bootstrap";
 import { AiOutlineUser } from "react-icons/ai";
 
 const SideBar = () => {
+  
   return (
     <Row className={style.sideBar}>
       <Col sm = {4} md = {4} lg = {4} className = {style.sideBarItemP}>
@@ -408,7 +409,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-          <Link to = "/improves" className = {style.textDecoration}>
+          <Link to = "/feedback" className = {style.textDecoration}>
             <svg
               id="_002-happy"
               data-name="002-happy"
@@ -555,7 +556,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-          <button>Cerrar sesiòn</button>
+          <button className = {style.logout}>Cerrar sesiòn</button>
           </li>
         </ul>
       </div>
