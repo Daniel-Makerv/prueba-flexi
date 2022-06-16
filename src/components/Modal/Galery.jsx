@@ -10,11 +10,11 @@ const Moda = ({title,item, children, action,titleB})=> {
     const form = useSelector(state => state.formEmployee)
     const handleClose = () => {
         form&&dispatch(action.update(form))
-        setTimeout(function(){
+        //setTimeout(function(){
           form&&dispatch(action.refresh())
           dispatch(formEmployee(null))
         setShow(false)
-           }, 1600);
+          // }, 1600);
     };
     const handleShow = () => {
         console.log(item)

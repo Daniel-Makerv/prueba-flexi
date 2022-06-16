@@ -13,11 +13,11 @@ const Moda = ({title, children, titleB, action}) => {
     const handleSubmit = () => {
       console.log("entre al correcto")
       form&&dispatch(action.create(form))
-      setTimeout(function(){
+     // setTimeout(function(){
         form&&dispatch(action.refresh())
         dispatch(formEmployee(null))
       setShow(false)
-         }, 1600);
+       //  }, 1600);
   };
     const handleShow = () => {
         setShow(true)

@@ -5,12 +5,18 @@
 	align-content: center;
     list-style: none;
 	box-sizing: border-box;
-	padding:0px;
-	padding-top: 8px !important;
+	padding:0;
+	margin:0;
 	max-height:50px;
+	
+}
+.userName{
+	font-size: 12px;
+	
 }
 .profileImg{
     background-color: red;
+	border-color: red;
     border-radius: 90%;
     width: 40px;
     height: 40px;
@@ -19,6 +25,7 @@
 .profileActions{
     display: flex;
     justify-content: space-between;
+	font-size: 15px;
 }
 .profileActions:hover{
     background-color: red;
@@ -49,12 +56,12 @@
 }
 
 .chatBar{
-    width: 100%;
     background-color: red;
     display: flex;
     justify-content: space-between;
     padding: 5px !important;
     align-items: center;
+	margin-left: 10px;
 }
 .chatList{
 	max-height: 94%;
@@ -62,7 +69,7 @@
 	overflow: hidden;
  overflow-y: scroll;
  scroll-behavior: smooth;
-	margin-left: 0px;
+	
 }
 .chat{
 	max-height: 100%;
@@ -80,7 +87,9 @@
 	justify-content: flex-start;
 	align-items: center;
 	padding-left: 10px !important;
-	max-height: 100%;
+	max-height: 50%;
+	margin:0;
+	
 	
 }
 .chatFormText{

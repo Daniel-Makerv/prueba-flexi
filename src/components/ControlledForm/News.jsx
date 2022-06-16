@@ -102,7 +102,7 @@ const News = ()=> {
           <input type="file" class="form-control" id='previewImage'/>
         </div>
         <div class="col-12">
-          <Filter data = {data} headers = {['Ubicacion','Puesto','Nombre','Nomina','Real','Castro','Pendejo','Node']} handle = {handleSubmit}/>
+          <Filter data = {data} headers = {['Planta','Segmento población','Razón social']} handle = {handleSubmit}/>
         </div>
       </form>
     );

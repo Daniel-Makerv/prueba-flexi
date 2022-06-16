@@ -124,7 +124,8 @@ const Event = ()=> {
       {
         
         multimedia.length>0&&multimedia.map(item=>
-          <img id = {item.relationId} key = {item.relationId} onDoubleClick={e=>handleOnClick(e)} src={item.url}/>
+          item.type === 'img'?<img id = {item.relationId} key = {item.relationId} onDoubleClick={e=>handleOnClick(e)} src={item.url}/>
+          :<video id = {item.relationId} key = {item.relationId} onDoubleClick={e=>handleOnClick(e)} src={item.url}/>
           )
       }
     </div>

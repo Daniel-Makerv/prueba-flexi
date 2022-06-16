@@ -99,7 +99,7 @@ const Event = ()=> {
           <input type="text" class="form-control" id="place" value = {form.place}/>
         </div>
         <div class="col-12">
-          <Filter data = {data} headers = {['Ubicacion','Puesto','Nombre','Nomina','Real','Castro','Pendejo','Node']} handle = {handleSubmit}
+          <Filter data = {data} headers = {['Planta','Segmento población','Razón social']} handle = {handleSubmit}
           initialF = {data.filters}/>
         </div>
       </form>
