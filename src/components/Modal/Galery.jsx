@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Modal, Button, Container, Row, Col } from 'react-bootstrap';
 import {updateEmployee,formEmployee, dataForm, getMultimedia} from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { GrGallery } from 'react-icons/gr';
 import axios from 'axios';
 const Moda = ({title,item, children, action,titleB})=> {
     const [show, setShow] = useState(false);
@@ -25,10 +25,18 @@ const Moda = ({title,item, children, action,titleB})=> {
       let formI = new FormData();
       // Convert the FileList into an array and iterate
       Array.from(e.target.files).forEach(file => {
+        console.log(file)
         formI.append('file',file)   
       });
+      console.log(item.id)
+      console.log('hola')
       formI.append('id',item.id)
-      await axios.post('https://flexi.brounieapps.com/events/multimedia',formI).then(res=>{
+      console.log(formI)
+      await axios.post('https://flexi.brounieapps.com/events/multimedia',formI,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    }).then(res=>{
         dispatch(getMultimedia(item.id))
         // setShow(false)
         // show=false})
@@ -37,7 +45,7 @@ const Moda = ({title,item, children, action,titleB})=> {
     return (
       <>
         <Button variant="primary" onClick={handleShow} style = {{marginRight:"10px"}} >
-          <AiOutlineEdit/>
+          <GrGallery/>
         </Button>
   
         <Modal  size="lg" show={show} scrollable={true} onHide={handleClose} backdrop = 'static'>

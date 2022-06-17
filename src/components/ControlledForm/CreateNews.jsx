@@ -49,7 +49,7 @@ const CreateLearning = ({data})=> {
         else if(prop === 'previewImage'){
            let formI = new FormData();
             formI.append('file',e.target.files[0])
-            axios.post(`http://localhost:3001/upload`,formI)
+            axios.post(`https://flexi.brounieapps.com/uploadd`,formI)
             .then(res=>{
               setForm({...form, previewImage:res.data.name})
               form.previewImage = res.data.name;

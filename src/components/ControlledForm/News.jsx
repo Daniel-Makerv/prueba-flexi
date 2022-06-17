@@ -51,7 +51,7 @@ const News = ()=> {
         else if(prop === 'previewImage'){
            let formI = new FormData();
             formI.append('file',e.target.files[0])
-            axios.post(`https://flexi.brounieapps.com/uploaddupload`,formI)
+            axios.post(`https://flexi.brounieapps.com/uploadd`,formI)
             .then(res=>{
               setForm({...form, previewImage:res.data.name})
               form.previewImage = res.data.name;

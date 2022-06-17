@@ -14,11 +14,11 @@ const Moda = ({title,item, children, action,titleB})=> {
     };
     const handleSubmit = () => {
       dispatch(action.delete(item))
-      //setTimeout(function(){
+      setTimeout(function(){
         dispatch(action.refresh())
         dispatch(formEmployee(null))
       setShow(false)
-         //}, 1600);
+         }, 1000);
         
   };
     const handleShow = () => {
