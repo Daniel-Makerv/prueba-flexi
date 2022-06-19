@@ -7,16 +7,20 @@ const Moda = ({title,item, children, action,titleB})=> {
     const [show, setShow] = useState(false);
     const dispatch = useDispatch();
     const form = useSelector(state => state.formEmployee)
-    const handleClose = () => {
+const handle = () => {
+
+dispatch(formEmployee(null))
+setShow(false)
+}    
+const handleClose = () => {
         form&&dispatch(action.update(form))
-        //setTimeout(function(){
+        setTimeout(function(){
           form&&dispatch(action.refresh())
           dispatch(formEmployee(null))
         setShow(false)
-          // }, 1600);
+           }, 1200);
     };
     const handleShow = () => {
-        console.log(item)
         dispatch(dataForm(item))
         setShow(true)
     };
@@ -27,7 +31,7 @@ const Moda = ({title,item, children, action,titleB})=> {
           <AiOutlineEdit/>
         </Button>
   
-        <Modal  size="lg" show={show} scrollable={true} onHide={handleClose} backdrop = 'static'>
+        <Modal  size="lg" show={show} scrollable={true} onHide={handle} backdrop = 'static'>
           <Modal.Header closeButton>
             <Modal.Title>{title}</Modal.Title>
           </Modal.Header>
@@ -41,7 +45,7 @@ const Moda = ({title,item, children, action,titleB})=> {
           </Container>
         </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="secondary" onClick={handle}>
               Cerrar
             </Button>
             <Button variant="danger" onClick={handleClose}>

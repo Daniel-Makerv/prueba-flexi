@@ -16,7 +16,7 @@ import {
   GET_FILTERS,CREATE_NEW, UPDATE_NEW, DELETE_NEW, GET_NEWS,
   GET_SERVICES, DELETE_SERVICE,GET_EVENTS, GET_MULTIMEDIA, 
   UPDATE_EVENT, DELETE_EVENT, CREATE_EVENT,
-  CREATE_MULTIMEDIA, DELETE_MULTIMEDIA
+  CREATE_MULTIMEDIA, DELETE_MULTIMEDIA, AUTH_USER
 } from '../actions/constants.js';
 
 const initialState = {
@@ -34,12 +34,18 @@ const initialState = {
    news: [],
    services:[],
    events:[],
-   multimedia:[]
+   multimedia:[],
+   authUser: false
 
 }
 export default function reducer(state = initialState, { type, payload }) {
     
     switch (type) {
+	case AUTH_USER:
+	    return{
+		...state,
+		authUser:payload.isAuth
+	   }
         case GET_MESSAGES:
 
             return {

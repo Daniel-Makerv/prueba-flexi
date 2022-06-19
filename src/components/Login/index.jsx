@@ -1,14 +1,37 @@
 import React,{useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {Navigate, useNavigate} from 'react-router-dom';
 //React components
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import {Col, Form, Button, Card} from 'react-bootstrap';
-import Logo from './img/login.jpg'
-
+import Logo from './img/login.jpg';
+import {isAuth} from '../../actions';
 const Login = ()=>{
+const dispatch = useDispatch();
+const authUser = useSelector(state=>state.authUser)
+const history = useNavigate();
+const [form, setForm] = useState({email:'',password:''})
+const handleSubmit = (e)=>{
+	e.preventDefault();
+	dispatch(isAuth(form))
+	setTimeout(()=>{
+	//const authUser = useSelector(state=>state.authUser)
+	history('/home')
+	console.log(authUser)
+	},1000)
+}
+const handleChange = (e) =>{
+e.preventDefault()
+console.log("soy onchange")
+e.target.id == 'email'?setForm({...form,email:e.target.value})
+:setForm({...form,password:e.target.value})
+}
+useEffect(()=>{
+authUser&&<Navigate to = '/home'/>
+},[authUser])
     return(
     <Container fluid >
     <Row>
@@ -38,17 +61,16 @@ const Login = ()=>{
   </g>
 </svg>
 <h2 className = "mt-5" style = {{textAlign:"center", marginTop:"5%"}}>Panel Administrador</h2>
-<Form className = "mt-5" style ={{maxWidth:"40%", display: "flex", alignItems:"center",flexDirection:"column", 
+<Form onSubmit = {e=>handleSubmit(e)}onChange ={e=>handleChange(e)}  className = "mt-5" style ={{maxWidth:"40%", display: "flex", alignItems:"center",flexDirection:"column", 
 backgroundColor:"#efefef", minHeight:"239px", justifyContent:"space-between"}}>
     
-  <Form.Group className="mb-3 mt-3" controlId="formBasicEmail" style = {{width: "90%",marginLeft:"25px"}}>
+  <Form.Group className="mb-3 mt-3" style = {{width: "90%",marginLeft:"25px"}}>
   <h6>Inicia sesión</h6>
-    <Form.Control type="email" placeholder="Correo electrónico" style = {{width: "90%",background:"white", height:"36px"}}/>
+    <Form.Control type="text" id = 'email' value = {form.email} placeholder="Usuario" style = {{width: "90%",background:"white", height:"36px"}}/>
   </Form.Group>
 
-  <Form.Group className="mb-3" controlId="formBasicPassword" style = {{width: "90%", marginLeft:"25px"}}>
-    <Form.Control type="password" placeholder="Contraseña" style = {{width: "90%", background:"white !important", height:"36px"}}/>
-    <Form.Check type="checkbox" label="Recordar contraseña" style = {{marginLeft:"25px"}}/>
+  <Form.Group className="mb-3" style = {{width: "90%", marginLeft:"25px"}}>
+    <Form.Control type="password" id = 'password' placeholder="Contraseña" value = {form.password} style = {{width: "90%", background:"white !important", height:"36px"}}/>
   </Form.Group>
   <Button style ={{backgroundColor:"red", width:"60%", marginBottom:"10px", height:"36px"}} type="submit">
     Iniciar sesión

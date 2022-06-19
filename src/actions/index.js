@@ -3,9 +3,17 @@ import {GET_MESSAGES,SEND_MESSAGE, GET_EMPLOYEE,GET_PENDING,
     DATA_FORM,GET_FEEDBACKS, CREATE_FEEDBACK, UPDATE_FEEDBACK, UPDATE_LEARNING,DELETE_EMPLOYEE,DELETE_FEEDBACK,
     DELETE_LEARNING,UPLOAD_FILE,GET_FILTERS, CREATE_NEW, UPDATE_NEW, DELETE_NEW, GET_NEWS,
 GET_SERVICES, DELETE_SERVICE, GET_EVENTS, GET_MULTIMEDIA, UPDATE_EVENT, DELETE_EVENT, CREATE_EVENT,
-CREATE_MULTIMEDIA, DELETE_MULTIMEDIA} from './constants';
+CREATE_MULTIMEDIA, DELETE_MULTIMEDIA, AUTH_USER} from './constants';
 const axios = require('axios').default;
 const URL = "https://flexi.brounieapps.com/";
+export function isAuth(payload){
+    return function(dispatch){
+        axios.post(`${URL}auth`,payload)
+        .then(res=>{
+            dispatch({type: AUTH_USER,payload:res.data})
+        });
+    }
+}
 export function getMessages(id){
    
     return function(dispatch){
