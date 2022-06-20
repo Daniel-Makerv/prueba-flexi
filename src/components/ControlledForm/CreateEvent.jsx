@@ -11,7 +11,7 @@ const CreateEvent = ({data})=> {
       date:'',
       place:'',
       previewImage:'',
-      filters:{planta:[],segmentoPoblacion:[],razonSocial:[]}
+      filters:{planta:[],segmentoPoblacion:[],razonSocial:[],puesto:[]}
     })
     
     const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const CreateEvent = ({data})=> {
           <input type="text" class="form-control" id="place" value = {form.place}/>
         </div>
         <div class="col-12">
-          <Filter data = {data} headers = {['Planta','Segmento población','Razón social']} handle = {handleSubmit}/>
+          <Filter data = {data} headers = {['Planta','Segmento población','Razón social','Puesto']} handle = {handleSubmit}/>
         </div>
       </form>
     );
