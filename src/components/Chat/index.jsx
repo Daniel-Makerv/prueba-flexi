@@ -227,7 +227,7 @@ const handleOnClick = (e)=>{
             )
           :
           <div className={style.msg + " " + style.msg_to}>
- <div className={style.content}>Bienvenido al chat Flexy!</div>
+ <div className={style.content}>Bienvenido al chat Flexi!</div>
  <div className={style.sender}>
      <span className={style.time} style = {{marginLeft:"25px"}}></span>
  </div>

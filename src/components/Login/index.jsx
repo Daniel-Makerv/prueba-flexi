@@ -9,14 +9,22 @@ import Row from 'react-bootstrap/Row';
 import {Col, Form, Button, Card} from 'react-bootstrap';
 import Logo from './img/login.jpg';
 import {isAuth} from '../../actions';
+const axios = require('axios').default;
 const Login = ()=>{
 const dispatch = useDispatch();
 const authUser = useSelector(state=>state.authUser)
 const history = useNavigate();
 const [form, setForm] = useState({email:'',password:''})
-const handleSubmit = (e)=>{
+const handleSubmit = async (e)=>{
 	e.preventDefault();
 	dispatch(isAuth(form))
+	await axios.post('https://flexi.brounieapps.com/auth',form).then(res=>
+	{
+	if(res.data.isAuth){
+	window.localStorage.setItem('isAuth',res.data.isAuth)
+	}
+	console.log("soy login")
+	})
 	setTimeout(()=>{
 	//const authUser = useSelector(state=>state.authUser)
 	history('/home')

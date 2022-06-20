@@ -556,7 +556,9 @@ const SideBar = () => {
             </Link>
           </li>
           <li>
-          <button className = {style.logout}>Cerrar sesiòn</button>
+<form>         
+ <button type = 'submit' onClick = {e=>window.localStorage.clear()} className = {style.logout}>Cerrar sesión</button>
+</form>
           </li>
         </ul>
       </div>

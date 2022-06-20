@@ -15,24 +15,26 @@ import Events from './components/Events';
 function App() {
 const authUser = useSelector(state=>state.authUser)
 const [auth,setAuth] = useState(authUser)
+const [session, setSession] = useState(window.localStorage.getItem('isAuth'))
 useEffect(()=>{
 console.log(auth)
 console.log(authUser)
 !auth&&setAuth(authUser)
+
 },[authUser,auth])
   return (
     <React.Fragment>      
     <Router>
     <Routes>
           <Route path="/login" element={<Login/>}/>
-          <Route path = "/home" element = {auth?<SideBar/>:<Navigate to = '/login'/>}/>
-	  <Route path = "/users" element = {auth?[<SideBar/>,<Users/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/news" element = {auth?[<SideBar/>,<News/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/events" element = {auth?[<SideBar/>,<Events/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/chat" element = {auth?[<SideBar/>,<Chat/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/learning" element = {auth?[<SideBar/>,<Learning/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/services" element = {auth?[<SideBar/>,<Service/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/feedback" element = {auth?[<SideBar/>,<Feedback/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/home" element = {auth||session?<SideBar/>:<Navigate to = '/login'/>}/>
+	  <Route path = "/users" element = {auth||session?[<SideBar/>,<Users/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/news" element = {auth||session?[<SideBar/>,<News/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/events" element = {auth||session?[<SideBar/>,<Events/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/chat" element = {auth||session?[<SideBar/>,<Chat/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/learning" element = {auth||session?[<SideBar/>,<Learning/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/services" element = {auth||session?[<SideBar/>,<Service/>]:<Navigate to = '/login'/>}/>
+          <Route path = "/feedback" element = {auth||session?[<SideBar/>,<Feedback/>]:<Navigate to = '/login'/>}/>
           <Route path = "/reports" element={auth?<SideBar/>:<Navigate to = '/login'/>}/>
     </Routes>
     </Router>
