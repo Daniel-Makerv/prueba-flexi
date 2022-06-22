@@ -26,6 +26,7 @@ console.log(authUser)
     <React.Fragment>      
     <Router>
     <Routes>
+    <Route path="/" element={<Login/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path = "/home" element = {auth||session?<SideBar/>:<Navigate to = '/login'/>}/>
 	  <Route path = "/users" element = {auth||session?[<SideBar/>,<Users/>]:<Navigate to = '/login'/>}/>
