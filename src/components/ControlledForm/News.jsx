@@ -102,7 +102,8 @@ const News = ()=> {
           <input type="file" class="form-control" id='previewImage'/>
         </div>
         <div class="col-12">
-          <Filter data = {data} headers = {['Planta','Segmento población','Razón social','Puesto']} handle = {handleSubmit}/>
+          <Filter data = {data} headers = {['Planta','Segmento población','Razón social','Puesto']} handle = {handleSubmit}
+          initialF = {data.filters}/>
         </div>
       </form>
     );

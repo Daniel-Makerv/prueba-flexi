@@ -2632,10 +2632,14 @@ useEffect(()=>{
   if(!filters.length>0){
  dispatch(getFilters())
 }
+
+console.log(initialF)
 if(initialF){
-let filtersR = JSON.parse(initialF)
+
+  let filtersR = JSON.parse(initialF)
  let aux = {...checks}
  filtersR['planta'].forEach(item=>{
+   console.log('soy: '+item)
    let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
   if( valueAux.value === item) valueAux.status=true;
    })

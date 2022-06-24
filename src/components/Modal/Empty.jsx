@@ -68,7 +68,7 @@ const Moda = ({title, children, titleB, action}) => {
               Cerrar
             </Button>
             <Button variant="danger" onClick={handleSubmit}>
-              Guardar
+              Enviar
             </Button>
           </Modal.Footer>
         </Modal>

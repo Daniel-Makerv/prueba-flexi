@@ -49,7 +49,7 @@ const handleClose = () => {
               Cerrar
             </Button>
             <Button variant="danger" onClick={handleClose}>
-            {titleB==='Eliminar'? "Eliminar": "Guardar"}
+            {titleB==='Eliminar'? "Eliminar": "Enviar"}
             </Button>
           </Modal.Footer>
         </Modal>
