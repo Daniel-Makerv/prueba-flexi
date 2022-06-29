@@ -10,6 +10,7 @@ const Filter = ({headers, handle,initialF})=>{
     const [state, setState] = useState({cont:0})
     const dispatch = useDispatch();
     const {filters,names} = useSelector(state=>state)
+    const [all, setAll] = useState(false)
     const [checks, setChecks] = useState({
       SanCrispin: { category: 'razonSocial', value: 'San Crispin', status: false },
       ServTecEmpresariales: {
@@ -2621,11 +2622,36 @@ const handleNext = () => {
   const handleOnChange = (e)=>{
     let aux = {...checks};
     console.log(e.target.id)
-    if(e.target.id === 'DISEÑADORLINEBUILDER') aux['DISENADORLINEBUILDER'].status = aux[e.target.id].status?false:true;
-    else aux[e.target.id].status = aux[e.target.id].status?false:true;
-    setChecks(aux);
-    //checks[e.target.id].status = checks[e.target.id].status?false:true;
-    handle(e,checks[e.target.id])
+    if(e.target.id ==='all'){
+      let form = {
+        planta:[],
+        segmentoPoblacion:[],
+        razonSocial:[],
+        puesto:[]
+      }
+      console.log(all)
+      setAll(all?false:true);
+      (Object.keys(checks)).forEach(prop=>{
+        aux[prop].status = all?false:true
+          if(aux[prop].category=='segmentoPoblacion')
+          form.segmentoPoblacion.push(aux[prop].value)
+          if(aux[prop].category=='planta')
+          form.planta.push(aux[prop].value)
+          if(aux[prop].category=='razonSocial')
+          form.razonSocial.push(aux[prop].value)
+          if(aux[prop].category=='puesto')
+          form.puesto.push(aux[prop].value)
+          setChecks(aux)
+      })
+      all?handle(e,checks[e.target.id],{planta:[],segmentoPoblacion:[],razonSocial:[],puesto:[]}):handle(e,checks[e.target.id],form)
+    }else{
+      if(e.target.id === 'DISEÑADORLINEBUILDER') aux['DISENADORLINEBUILDER'].status = aux[e.target.id].status?false:true;
+      else aux[e.target.id].status = aux[e.target.id].status?false:true;
+      setChecks(aux);
+      //checks[e.target.id].status = checks[e.target.id].status?false:true;
+      handle(e,checks[e.target.id])
+    }
+   
     dispatch(getFilters())
   }
 useEffect(()=>{
@@ -2635,9 +2661,10 @@ useEffect(()=>{
 
 console.log(initialF)
 if(initialF){
-
   let filtersR = JSON.parse(initialF)
  let aux = {...checks}
+ let total = filtersR['razonSocial'].length+filtersR['puesto'].length+filtersR['planta'].length+filtersR['segmentoPoblacion'].length
+ if(total >= 524) setAll(true)
  filtersR['planta'].forEach(item=>{
    console.log('soy: '+item)
    let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
@@ -2649,7 +2676,7 @@ if(initialF){
     })
     filtersR['puesto'].forEach(item=>{
       let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
-     if( valueAux.value === item) valueAux.status=true;
+     if( valueAux && valueAux.value === item) valueAux.status=true;
       })
  filtersR['razonSocial'].forEach(item=>{
       let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
@@ -2660,12 +2687,25 @@ if(initialF){
 },[])
     return(
         <Container className = 'mt-2'>
-           
-            {<Pagination size="md"><Pagination.Prev onClick = {e=>handlePrevious()} />
+            <Row className ='mt-3'>
+              <Col md = '6'>
+            <Pagination size="md"><Pagination.Prev onClick = {e=>handlePrevious()} />
             <Pagination.Item>{'Filtros Disponibles'}</Pagination.Item>
-    <Pagination.Next onClick = {e=>handleNext()} /></Pagination>}
+    <Pagination.Next onClick = {e=>handleNext()} /></Pagination>
+    </Col>
+    <Col md = '6'>
+    <Row style = {{paddingTop:"10px"}} key = {'item'}>
+     <Col md = "2">
+     <input id = 'all' onChange = {e=>handleOnChange(e)} checked = {all}  type = 'checkbox'/>
+     </Col>
+     <Col md = "10">
+      <label>{'Aplicar todos los filtros'}</label>
+      </Col>
+   </Row>
+   </Col>
+   </Row>
             <Accordion>
-            <Row className = {'flex-row'}>
+            <Row className = {'flex-row '}>
             
             {
                
@@ -2674,6 +2714,7 @@ if(initialF){
         <Accordion.Item eventKey={index} style = {{maxWidth:"180px"}}>
     <Accordion.Header>{item}</Accordion.Header>
     <Accordion.Body className = {style.container}>
+    
    { 
    
    filters.length>0?filters[index].map(item=>{

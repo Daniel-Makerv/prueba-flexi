@@ -5,7 +5,7 @@ import {formEmployee, uploadFile} from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Filter from '../Filter';
 const CreateLearning = ({data})=> {
-    const [form, setForm] = useState({
+    let [form, setForm] = useState({
       name:'',
       body:'',
       author:'',
@@ -17,8 +17,10 @@ const CreateLearning = ({data})=> {
     })
     
     const dispatch = useDispatch();
-    const handleSubmit = (e,filter)=>{
-      e.preventDefault()
+    const handleSubmit = (e,filter,all)=>{
+      console.log(all)
+      console.log('soy all')
+         e.preventDefault()
         let prop = e.target.id;
         if(prop === 'name'){
             setForm({...form, name:e.target.value})
@@ -71,8 +73,22 @@ const CreateLearning = ({data})=> {
           }
           setForm(aux)
         }
-        
-        dispatch(formEmployee(form))
+        if(all){
+          let aux = {...form};
+          aux.filters=all
+          console.log("soy aux")
+          console.log(aux)
+          setForm(aux)
+          setTimeout(()=>{
+            dispatch(formEmployee(form))
+          },1600)
+         
+        }
+        setTimeout(()=>{
+          dispatch(formEmployee(form))
+        },1000)
+      
+       
     }
     useEffect(()=>{
        

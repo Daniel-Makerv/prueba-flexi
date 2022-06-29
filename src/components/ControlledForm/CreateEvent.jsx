@@ -15,7 +15,7 @@ const CreateEvent = ({data})=> {
     })
     
     const dispatch = useDispatch();
-    const handleSubmit = (e,filter)=>{
+    const handleSubmit = (e,filter,all)=>{
       e.preventDefault()
         let prop = e.target.id;
         if(prop === 'name'){
@@ -59,8 +59,20 @@ const CreateEvent = ({data})=> {
           }
           setForm(aux)
         }
-        
-        dispatch(formEmployee(form))
+        if(all){
+          let aux = {...form};
+          aux.filters=all
+          console.log("soy aux")
+          console.log(aux)
+          setForm(aux)
+          setTimeout(()=>{
+            dispatch(formEmployee(form))
+          },1600)
+         
+        }
+        setTimeout(()=>{
+          dispatch(formEmployee(form))
+        },1000)
     }
     useEffect(()=>{
        

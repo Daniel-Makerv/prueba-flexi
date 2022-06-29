@@ -141,10 +141,13 @@ export default function reducer(state = initialState, { type, payload }) {
                 ...state,
             }
         case GET_FILTERS:
-            
+            let res = []
+            for(let item of payload.filters){
+                res.push(item.sort())
+            }
             return{
                 ...state,
-                filters:payload.filters,
+                filters:res,
                 names: payload.names
             }
             case GET_NEWS:

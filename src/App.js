@@ -12,6 +12,7 @@ import Feedback from './components/Feedback';
 import Service from './components/Services';
 import News from './components/News';
 import Events from './components/Events';
+import Reports from './components/Reports';
 function App() {
 const authUser = useSelector(state=>state.authUser)
 const [auth,setAuth] = useState(authUser)
@@ -36,7 +37,7 @@ console.log(authUser)
           <Route path = "/learning" element = {auth||session?[<SideBar/>,<Learning/>]:<Navigate to = '/login'/>}/>
           <Route path = "/services" element = {auth||session?[<SideBar/>,<Service/>]:<Navigate to = '/login'/>}/>
           <Route path = "/feedback" element = {auth||session?[<SideBar/>,<Feedback/>]:<Navigate to = '/login'/>}/>
-          <Route path = "/reports" element={auth?<SideBar/>:<Navigate to = '/login'/>}/>
+          <Route path = "/reports" element = {auth||session?[<SideBar/>,<Reports/>]:<Navigate to = '/login'/>}/>
     </Routes>
     </Router>
     </React.Fragment>
