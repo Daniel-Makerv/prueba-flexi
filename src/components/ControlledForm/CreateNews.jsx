@@ -10,6 +10,7 @@ const CreateLearning = ({data})=> {
       body:'',
       author:'',
       date:'',
+      tipo:'Organización',
       userLikes:[],
       userDislikes:[],
       previewImage:'',
@@ -22,6 +23,7 @@ const CreateLearning = ({data})=> {
       console.log('soy all')
          e.preventDefault()
         let prop = e.target.id;
+        console.log(e.target.value)
         if(prop === 'name'){
             setForm({...form, name:e.target.value})
          form.name = e.target.value;
@@ -40,6 +42,10 @@ const CreateLearning = ({data})=> {
             setForm({...form, date:e.target.value})
             form.date = e.target.value;
         }
+        else if(prop === 'tipo'){
+          setForm({...form, tipo:e.target.value})
+          form.tipo = e.target.value;
+      }
         else if(prop === 'userLikes'){
             setForm({...form, userLikes:e.target.value})
             form.userLikes = e.target.value;
@@ -105,9 +111,10 @@ const CreateLearning = ({data})=> {
        </div>
         <label for="inputPassword4" class="form-label">Descripcion</label>
         <div class="col-md-12">
-          <textarea cols = '80' rows = '10' id="body" value = {form.body}></textarea>
+          <textarea cols = '80' rows = '6' id="body" value = {form.body}></textarea>
         </div>
         <div class="col-6">
+  
           <label for="inputAddress" class="form-label">Fecha</label>
           <input type="date" class="form-control" id="date" value = {form.date}/>
         </div>
@@ -115,6 +122,14 @@ const CreateLearning = ({data})=> {
           <label for="inputCity" class="form-label">Imagen</label>
           <input type="file" class="form-control" id='previewImage'/>
         </div>
+        <div class="col-6 mt-2">
+        <label for="inputAddress" class="form-label">Tipo de noticia</label>
+        <select class="form-control" id="tipo" onChange={e=>handleSubmit(e)}>
+  <option value="Industria">Industria</option>
+  <option value="Organización" selected>Organización</option>
+  <option value="Colaborador">Colaborador</option>
+</select>
+</div>
         <div class="col-12">
           <Filter data = {data} headers = {['Planta','Segmento población','Razón social','Puesto']} handle = {handleSubmit}/>
         </div>

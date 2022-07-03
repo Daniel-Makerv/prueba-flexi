@@ -12,6 +12,7 @@ const News = ()=> {
       body:data.body,
       author:data.author,
       date:data.date,
+      tipo:data.tipo,
       userLikes:[],
       userDislikes:[],
       previewImage:'',
@@ -40,6 +41,10 @@ const News = ()=> {
             setForm({...form, date:e.target.value})
             form.date = e.target.value;
         }
+        else if(prop === 'tipo'){
+          setForm({...form, tipo:e.target.value})
+          form.tipo = e.target.value;
+      }
         else if(prop === 'userLikes'){
             setForm({...form, userLikes:e.target.value})
             form.userLikes = e.target.value;
@@ -114,6 +119,14 @@ const News = ()=> {
           <label for="inputCity" class="form-label">Imagen</label>
           <input type="file" class="form-control" id='previewImage'/>
         </div>
+        <div class="col-6 mt-2">
+        <label for="inputAddress" class="form-label">Tipo de noticia</label>
+        <select class="form-control" id="tipo" onChange={e=>handleSubmit(e)}>
+  <option value="Industria" selected = {form.tipo =='Industria'?true:false}>Industria</option>
+  <option value="Organización" selected = {form.tipo =='Organización'?true:false} >Organización</option>
+  <option value="Colaborador" selected = {form.tipo =='Colaborador'?true:false}>Colaborador</option>
+</select>
+</div>
         <div class="col-12">
           <Filter data = {data} headers = {['Planta','Segmento población','Razón social','Puesto']} handle = {handleSubmit}
           initialF = {data.filters}/>

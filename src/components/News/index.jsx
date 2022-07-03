@@ -30,7 +30,7 @@ const News = ()=>{
         </Row>
   <Row style = {{marginTop:"5px"}}>
     <Col>
-    <Pagination title={"E-News"} headers = {['Acciones','Nombre','Cuerpo','Autor','Fecha','Likes','Dislikes','Imagen']}
+    <Pagination title={"E-News"} headers = {['Acciones','Nombre','Cuerpo','Autor','Fecha','Tipo','Likes','Dislikes','Imagen']}
      data={news} action = {{update:updateNew,delete:deleteNew, refresh:getNews}}>
     <ControlledFormB/>
     </Pagination>        
