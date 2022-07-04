@@ -61,6 +61,9 @@ const CreateLearning = ({data})=> {
             .then(res=>{
               setForm({...form, previewImage:res.data.name})
               form.previewImage = res.data.name;
+              setTimeout(()=>{
+                dispatch(formEmployee(form))
+              },1600)
             });
         }
          if(filter){
@@ -85,6 +88,8 @@ const CreateLearning = ({data})=> {
           console.log("soy aux")
           console.log(aux)
           setForm(aux)
+          form = aux;
+          formEmployee(aux)
           setTimeout(()=>{
             dispatch(formEmployee(form))
           },1600)
