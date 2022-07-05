@@ -46,7 +46,7 @@ const Chat = () => {
     
   // if(!messages.length>0){
       const body = document.querySelector('#chatContainer');
-      body.scrollTo(1000, body.scrollHeight);
+      body.scsenderlTo(1000, body.scsenderlHeight);
      //// employee[0]&&dispatch(getMessages(employee[0]&&employee[0].id));
     //}
   },[])
@@ -166,7 +166,7 @@ const handleOnClick = (e)=>{
         <Col s={8} md={8} lg={8} className = {style.chat}>
         <div id = "chatContainer" className = {style.chatContainer} style = {{borderLeft:"1px solid", borderColor:"black"}}>
             {show.messages&&employee.length>0?messages.length>0 && messages.map(item=>
-             item.rol === "admin"?
+             item.sender === "admin"?
              <div className={style.msg + " " + style.msg_from}>
  <div className={style.recepient}>
      
@@ -207,20 +207,20 @@ const handleOnClick = (e)=>{
      </g>
    </svg>
  </span>
- <span className={style.name}>{item.rol}</span>
- <span className={style.time}>{item.messageDate.split('T')[0]}</span>
+ <span className={style.name}>{item.sender}</span>
+ <span className={style.time}>{item.sentDate}</span>
  </div>
- <div className={style.content}>{item.content}</div>
+ <div className={style.content}>{item.kind}</div>
 </div>
 :
 <div className={style.msg + " " + style.msg_to}>
- <div className={style.content}>{item.content}</div>
+ <div className={style.content}>{item.kind}</div>
  <div className={style.sender}>
      <span >
          <img className = {style.profileImg} style = {{marginLeft:"25px",marginRight:"30px"}} src={show.user&&employee[0]&&employee[0].imageUrl}/>
      </span>
-     <span className = {style.name} >{item.rol}</span>
-     <span className={style.time} style = {{marginLeft:"25px"}}>{item.messageDate.split('T')[0]}</span>
+     <span className = {style.name} >{item.sender}</span>
+     <span className={style.time} style = {{marginLeft:"25px"}}>{item.sentDate}</span>
  </div>
            </div>
            
