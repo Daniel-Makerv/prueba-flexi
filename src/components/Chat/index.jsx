@@ -46,7 +46,7 @@ const Chat = () => {
     
   // if(!messages.length>0){
       const body = document.querySelector('#chatContainer');
-      body.scsenderlTo(1000, body.scsenderlHeight);
+      body.scrollTo(1000, body.scrollHeight);
      //// employee[0]&&dispatch(getMessages(employee[0]&&employee[0].id));
     //}
   },[])
@@ -208,7 +208,7 @@ const handleOnClick = (e)=>{
    </svg>
  </span>
  <span className={style.name}>{item.sender}</span>
- <span className={style.time}>{item.sentDate}</span>
+ <span className={style.time}>{item.sendDate}</span>
  </div>
  <div className={style.content}>{item.kind}</div>
 </div>
@@ -220,7 +220,7 @@ const handleOnClick = (e)=>{
          <img className = {style.profileImg} style = {{marginLeft:"25px",marginRight:"30px"}} src={show.user&&employee[0]&&employee[0].imageUrl}/>
      </span>
      <span className = {style.name} >{item.sender}</span>
-     <span className={style.time} style = {{marginLeft:"25px"}}>{item.sentDate}</span>
+     <span className={style.time} style = {{marginLeft:"25px"}}>{item.sendDate}</span>
  </div>
            </div>
            
