@@ -10,7 +10,7 @@ const Chat = () => {
   var employee = useSelector(state => state.employee);
   var pending = useSelector(state => state.pending);
   let [state, setState] = useState('')
-  let [show, setShow] = useState({messages:true,list:true,user:false})
+  let [show, setShow] = useState({messages:false,list:true,user:false})
  
   const [input,setInput] = useState("");
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Chat = () => {
     console.log(state+'state')
        dispatch(sendMessage({id:state,content:e.target.content.value}))
        dispatch(getMessages(state))
-       
+       e.target.content.value = ''
    }
    const handleSearch = async(e)=>{
     e.preventDefault();
@@ -117,8 +117,7 @@ const handleOnClick = (e)=>{
      </g>
    </svg>
  </span>}
-                </div>
-                
+                </div>   
                
             </nav>
         <Col s={4} md={4} lg={4} className = {style.chatList}>
