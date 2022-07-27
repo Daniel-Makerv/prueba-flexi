@@ -14,7 +14,7 @@ const CreateLearning = ({data})=> {
       userLikes:[],
       userDislikes:[],
       previewImage:'',
-      filters:{planta:[],segmentoPoblacion:[],razonSocial:[],puesto:[]}
+      filters:{planta:[],segmentoPoblacion:[],razonSocial:[],puesto:[],ubicacion:[]}
     })
     
     const dispatch = useDispatch();
@@ -136,7 +136,7 @@ const CreateLearning = ({data})=> {
 </select>
 </div>
         <div class="col-12">
-          <Filter data = {data} headers = {['Planta','Segmento población','Razón social','Puesto']} handle = {handleSubmit}/>
+        <Filter data = {data} headers = {['Razón social','Segmento población','Planta','Puesto',"Ubicacion"]} handle = {handleSubmit}/>
         </div>
       </form>
     );

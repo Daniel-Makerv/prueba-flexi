@@ -15,10 +15,89 @@ const Filter = ({headers, handle,initialF})=>{
       planta:[],
       segmentoPoblacion:[],
       razonSocial:[],
-      puesto:[]
+      puesto:[],
+      ubicacion:[]
     })
     const [checks, setChecks] = useState({  
+        CEDIS: {
+            category: "ubicacion",
+            value: "CEDIS",
+            status: false
+        },
+        CLUB: {
+            category: "ubicacion",
+            value: "CLUB",
+            status: false
+        },
+        GUADALAJARA: {
+            category: "ubicacion",
+            value: "GUADALAJARA",
+            status: false
+        },
+        LEON: {
+            category: "ubicacion",
+            value: "LEON",
+            status: false
+        },
+        LOSMOCHIS: {
+            category: "ubicacion",
+            value: "LOS MOCHIS",
+            status: false
+        },
+        MEXICO: {
+            category: "ubicacion",
+            value: "MEXICO",
+            status: false
+        },
+        MONTERREY: {
+            category: "ubicacion",
+            value: "MONTERREY",
+            status: false
+        },
+        ORIENTAL: {
+            category: "ubicacion",
+            value: "ORIENTAL",
+            status: false
+        },
+        PROCESOSESPECIALES: {
+            category: "ubicacion",
+            value: "PROCESOS ESPECIALES",
+            status: false
+        },
+        PUEBLA: {
+            category: "ubicacion",
+            value: "PUEBLA",
+            status: false
+        },
+        SANDIEGODELAUNION: {
+            category: "ubicacion",
+            value: "SAN DIEGO DE LA UNION",
+            status: false
+        },
+        SANJOSEELALTO: {
+            category: "ubicacion",
+            value: "SAN JOSE EL ALTO",
+            status: false
+        },
+        SANLUISDELAPAZ: {
+            category: "ubicacion",
+            value: "SAN LUIS DE LA PAZ",
+            status: false
+        },
+        STIVA: {
+            category: "ubicacion",
+            value: "STIVA",
+            status: false
+        },
+        UXMAL: {
+            category: "ubicacion",
+            value: "UXMAL",
+            status: false
+        },
         
+
+       
+    ///////////////////////////////////////////////////
     SERVICIOSADMINISTRATIVOSDESCENTRALIZADOSSADECV: {
       category: "razonSocial",
       value: "SERVICIOS ADMINISTRATIVOS DESCENTRALIZADOS S.A. DE C.V",
@@ -2864,7 +2943,8 @@ const handleNext = () => {
        planta:[],
       segmentoPoblacion:[],
       razonSocial:[],
-      puesto:[]
+      puesto:[],
+      ubicacion:[]
     }
       console.log(all)
       setAll(all?false:true);
@@ -2878,6 +2958,8 @@ const handleNext = () => {
           formAux.razonSocial.push(aux[prop].value)
           if(aux[prop].category=='puesto')
           formAux.puesto.push(aux[prop].value)
+          if(aux[prop].category=='ubicacion')
+          formAux.ubicacion.push(aux[prop].value)
           setChecks(aux)
       }
       if(all){
@@ -2908,7 +2990,7 @@ if(initialF){
   let filtersR = JSON.parse(initialF)
  let aux = {...checks}
  let total = filtersR['razonSocial'].length+filtersR['puesto'].length+filtersR['planta'].length+filtersR['segmentoPoblacion'].length
- if(total >= 524) setAll(true)
+ if(total >= 539) setAll(true)
  filtersR['planta'].forEach(item=>{
    console.log('soy: '+item)
    let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
@@ -2926,6 +3008,10 @@ if(initialF){
       let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
      if( valueAux.value === item) valueAux.status=true;
       })
+      filtersR['ubicacion'].forEach(item=>{
+        let valueAux = aux[item.normalize("NFD").replace(/[\u0300-\u036f\-\.\" "]/g, "")]
+       if( valueAux.value === item) valueAux.status=true;
+        })
     }
  dispatch(getFilters())
 },[])
