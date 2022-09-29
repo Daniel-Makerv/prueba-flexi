@@ -19,7 +19,7 @@ function Pagination(props) {
     e.preventDefault();
     setcurrentPage(Number(e.target.id));
   };
-  const handleModal = (e) => {
+  const handleComments = (e) => {
     e.preventDefault();
     setShow(true)
   };
@@ -51,6 +51,9 @@ function Pagination(props) {
      !prop.includes('image') && !prop.includes('Image') ? <td><p>{item[prop]}</p></td>
      :<td><img style = {{maxWidth:"60px", maxHeight:"60px"}} src = {item[prop]} /></td>
      )
+     }
+     {
+     item.comments ? item.comments = item.comments?item.comments.length:null:null
      }
   </tr>
           

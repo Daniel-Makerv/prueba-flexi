@@ -7,6 +7,7 @@ import ControlledForm from '../ControlledForm/CreateNews';
 import ControlledFormB from '../ControlledForm/News';
 import {getNews, updateNew, deleteNew, createNew} from '../../actions'
 import Modal from '../Modal/Empty';
+import Table from '../DinamicTable';
 const News = ()=>{
     const dispatch = useDispatch();
     const news = useSelector(state=>state.news);
@@ -22,15 +23,16 @@ const News = ()=>{
         <Col md={9}>
         <Search/>
         </Col>
-        <Col md={3} style = {{marginTop:"25px"}}>
-        <Modal title = {"Crear Noticia"} titleB = {"Nueva noticia"} action = {{create:createNew,refresh:getNews}}>
+        <Col md={3} lg = {3} style = {{marginTop:"25px", display:"flex"}}>
+        <Modal title = {"Crear Noticia"} titleB = {"Nueva noticia"}  action = {{create:createNew,refresh:getNews}}>
         <ControlledForm data = {news}/>
         </Modal>
         </Col>
+        
         </Row>
-  <Row style = {{marginTop:"5px"}}>
+  <Row style = {{marginTop:"5%"}}>
     <Col>
-    <Pagination title={"E-News"} headers = {['Acciones','Nombre','Cuerpo','Autor','Fecha','Tipo','Likes','Dislikes','Imagen']}
+    <Pagination title={"E-News"} headers = {['Acciones','Nombre','Cuerpo','Autor','Fecha','Tipo','Likes','Dislikes','Imagen','comentarios']}
      data={news} action = {{update:updateNew,delete:deleteNew, refresh:getNews}}>
     <ControlledFormB/>
     </Pagination>        

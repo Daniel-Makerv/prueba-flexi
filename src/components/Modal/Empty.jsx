@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Modal, Button, Container, Row, Col , Alert} from 'react-bootstrap';
 import {updateEmployee,formEmployee, dataForm} from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
-const Moda = ({title, children, titleB, action}) => {
+const Moda = ({title, children, titleB, action ,isC = false, cb , name}) => {
     const [show, setShow] = useState(false);
     const [alert,setAlert] = useState(false)
     const dispatch = useDispatch();
@@ -37,13 +37,14 @@ const Moda = ({title, children, titleB, action}) => {
       }
     }
   };
-    const handleShow = () => {
+    const handleShow = (e) => {
+      cb(e)
         setShow(true)
     };
   
     return (
       <>
-        <Button variant="danger" onClick={handleShow}>
+        <Button id = {name} variant="danger" onClick={e=>handleShow(e)}>
           {titleB}
         </Button>
   
@@ -67,9 +68,9 @@ const Moda = ({title, children, titleB, action}) => {
             <Button variant="secondary" onClick={handleClose}>
               Cerrar
             </Button>
-            <Button variant="danger" onClick={handleSubmit}>
+           { !isC?<Button variant="danger" onClick={handleSubmit}>
               Enviar
-            </Button>
+            </Button>:null}
           </Modal.Footer>
         </Modal>
       </>

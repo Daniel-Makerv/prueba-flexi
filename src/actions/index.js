@@ -3,9 +3,15 @@ import {GET_MESSAGES,SEND_MESSAGE, GET_EMPLOYEE,GET_PENDING,
     DATA_FORM,GET_FEEDBACKS, CREATE_FEEDBACK, UPDATE_FEEDBACK, UPDATE_LEARNING,DELETE_EMPLOYEE,DELETE_FEEDBACK,
     DELETE_LEARNING,UPLOAD_FILE,GET_FILTERS, CREATE_NEW, UPDATE_NEW, DELETE_NEW, GET_NEWS,
 GET_SERVICES, DELETE_SERVICE, GET_EVENTS, GET_MULTIMEDIA, UPDATE_EVENT, DELETE_EVENT, CREATE_EVENT,
-CREATE_MULTIMEDIA, DELETE_MULTIMEDIA, AUTH_USER} from './constants';
+CREATE_MULTIMEDIA, DELETE_MULTIMEDIA, AUTH_USER,FILTER_BY_TITLE} from './constants';
 const axios = require('axios').default;
 const URL = "https://flexi.brounieapps.com/";
+
+export function filterByTitle(payload){
+    return function(dispatch){
+        dispatch({type: FILTER_BY_TITLE,payload})
+    }
+}
 export function isAuth(payload){
     return function(dispatch){
         axios.post(`${URL}auth`,payload)
@@ -27,6 +33,7 @@ export function getMessages(id){
 export function getPending(){
    
     return function(dispatch){
+        console.log("Pending")
         axios.get(`${URL}chat`)
         .then(res=>{
             dispatch({type: GET_PENDING,payload:res.data})

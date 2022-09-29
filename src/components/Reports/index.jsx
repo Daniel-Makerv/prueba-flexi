@@ -7,35 +7,31 @@ import ControlledFormB from '../ControlledForm/News';
 import {getNews,getEvents, updateNew, deleteNew, createNew} from '../../actions'
 import Modal from '../Modal/Empty';
 import style from './styles.module.css'
+import Tables from '../DinamicTable';
 const Reports = ()=>{
     const dispatch = useDispatch();
     const news = useSelector(state=>state.news);
     const events = useSelector(state=>state.events);
     const [data, setData] = useState([])
     const [dataR, setDataR] = useState([])
-    const handleChange = (e)=>{
-      console.log(e.target.value)
-      if(e.target.value == 'likes'){
-      setDataR([
-        ['Likes', "General"],
-        ["Likes", 12],
-        ["Dislikes", 2],
-        
-      ])
-    }
+    const [comment, setComment] = useState('')
+    const handleComment = (e)=>{
+      console.log(e.target.id)
+      setComment(e.target.id)
     }
     const handleClick = (e)=>{
       console.log(e.target.id)
       let res = news.filter(item=>item.id===e.target.id)
       console.log(res)
-      setDataR({likes:res[0].userLikes, dislikes:res[0].userDislikes})
+      console.log(res)
+     setDataR({likes:res[0].userLikes, dislikes:res[0].userDislikes})
     }
     useEffect(()=>{
         if(!news.length>0){
             console.log("getNews")
         dispatch(getNews())
         }
-    },[dataR])
+    },[news, comment])
     return(
         <Container style = {{marginLeft:'80px',marginTop:'20px'}}>
         <Row style = {{alignItems:"center"}}>
@@ -49,6 +45,7 @@ const Reports = ()=>{
       <th>Titulo</th>
       <th>Tipo</th>
       <th>Reacciones</th>
+      <th>comentarios</th>
       
     </tr>
   </thead>
@@ -60,8 +57,29 @@ const Reports = ()=>{
       <td id = {item.id} onClick={e=>handleClick(e)}>{++index}</td>
       <td id = {item.id} onClick={e=>handleClick(e)}>{item.name}</td>
       <td>Noticia</td>
-      <td id = {item.id} onClick={e=>handleClick(e)}>{item.userLikes&&item.userDislikes&&item.userLikes+item.userDislikes}</td>
-      
+      <td id = {item.id} onClick={e=>handleClick(e)}>{item.userLikes+item.userDislikes}</td>
+      <td id = {item.id} onClick={e=>handleClick(e)}>
+      <Modal  title = {"Comentarios"} titleB = {"ver"} action = {{create:createNew,refresh:getNews}} isC = {true} cb = {handleComment} name = {item.name}>
+        <Tables  headers = {["Noticia","Comentario"]}>
+        {
+            news.map((item,index)=>
+               
+                  item.name == comment?<tr key = {index}>
+                <td key = {index}> 
+                {item.name}
+                </td>
+                <td key = {index}> 
+                {item.body}
+                </td>
+                </tr>:null
+                
+                
+                )
+        }
+        
+        </Tables>
+        </Modal>
+      </td>
     </tr>
     
     </>

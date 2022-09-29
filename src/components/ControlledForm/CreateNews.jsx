@@ -55,7 +55,12 @@ const CreateLearning = ({data})=> {
           form.userDislikes = e.target.value;
       }
         else if(prop === 'previewImage'){
+          
+          
+        
            let formI = new FormData();
+           console.log(e.target.files[0])
+           console.log("hola")
             formI.append('file',e.target.files[0])
             axios.post(`https://flexi.brounieapps.com/uploadd`,formI)
             .then(res=>{

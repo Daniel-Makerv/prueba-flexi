@@ -16,10 +16,11 @@ import {
   GET_FILTERS,CREATE_NEW, UPDATE_NEW, DELETE_NEW, GET_NEWS,
   GET_SERVICES, DELETE_SERVICE,GET_EVENTS, GET_MULTIMEDIA, 
   UPDATE_EVENT, DELETE_EVENT, CREATE_EVENT,
-  CREATE_MULTIMEDIA, DELETE_MULTIMEDIA, AUTH_USER
+  CREATE_MULTIMEDIA, DELETE_MULTIMEDIA, AUTH_USER, FILTER_BY_TITLE
 } from '../actions/constants.js';
 
 const initialState = {
+   comments: [],
    messages:[],
    sendMessage:{},
    employee: [],
@@ -35,12 +36,58 @@ const initialState = {
    services:[],
    events:[],
    multimedia:[],
-   authUser: false
-
+   authUser: false,
+   auxFeedbacks:[],
+   auxNews:[],
+   auxEvents:[],
+   auxServices:[],
+   auxLearning:[]
 }
 export default function reducer(state = initialState, { type, payload }) {
     
     switch (type) {
+    case FILTER_BY_TITLE:{
+        
+       
+        let filterFeedbacks = state.feedbacks.filter(feedback => feedback["userPointer"].toUpperCase().includes(payload.toUpperCase()))
+        let filterNews = state.news.filter(feedback => feedback["author"].toUpperCase().includes(payload.toUpperCase()))
+        let filterEvents = state.events.filter(feedback => feedback["place"].toUpperCase().includes(payload.toUpperCase()))
+        let filterLearning = state.learning.filter(feedback => feedback["nameCourse"].toUpperCase().includes(payload.toUpperCase()))
+        let filterServices = state.services.filter(feedback => feedback["name"].toUpperCase().includes(payload.toUpperCase()))
+        
+        if(filterFeedbacks.length<=0){
+            filterFeedbacks = state.auxFeedbacks
+        }
+        if(filterNews.length<=0){
+            filterNews = state.auxNews;
+        }
+        if(filterEvents.length<=0){
+            filterEvents = state.auxEvents;
+        }
+        if(filterLearning.length<=0){
+            filterLearning = state.auxLearning;
+        }
+        if(filterServices.length<=0){
+            filterServices = state.auxServices;
+        }
+        console.log(payload)
+        if(payload === ""){
+            filterNews = state.auxNews;
+            filterFeedbacks = state.auxFeedbacks
+            filterServices = state.auxServices;
+            filterLearning = state.auxLearning;
+            filterEvents = state.auxEvents;
+        }
+        return{
+            ...state,
+            news: filterNews,
+            feedbacks:filterFeedbacks,
+            services:filterServices,
+            learning:filterLearning,
+            events:filterEvents
+
+        }
+    }
 	case AUTH_USER:
 	    return{
 		...state,
@@ -82,19 +129,21 @@ export default function reducer(state = initialState, { type, payload }) {
                 ...state
             }
         case GET_PENDING:
+            const employees = [...payload.employees].reverse();
             return{
                 ...state,
-                pending: payload.employees
+                pending: employees
             }
         case REMOVE_MESSAGES:
             return{
                 ...state,
             }
         case GET_LEARNING:
-            console.log("soy learning")
+            const learning = [...payload.learning].reverse();
             return{
                 ...state,
-                learning: payload.learning
+                learning: learning,
+                auxLearning: learning
             }
         case CREATE_LEARNING:
             
@@ -112,9 +161,11 @@ export default function reducer(state = initialState, { type, payload }) {
                 ...state,
             }
         case GET_FEEDBACKS:
+            const feedback = [...payload.feedback].reverse();
             return{
                 ...state,
-                feedbacks: payload.feedback
+                feedbacks: feedback,
+                auxFeedbacks: feedback
             }
         case CREATE_FEEDBACK:
             
@@ -148,12 +199,22 @@ export default function reducer(state = initialState, { type, payload }) {
             return{
                 ...state,
                 filters:res,
-                names: payload.names
+                names: payload.names,
             }
             case GET_NEWS:
+                let aux = []
+                const news = [...payload.news].reverse();
+                for(let item of payload.news){
+                    aux.concat(item.comments)
+                    item.comments = item.comments.map(item=>JSON.stringify(item))
+                }
+                aux = aux.map(item=>{return item.name +"/"+item.body})
+            
                 return{
                     ...state,
-                    news: payload.news
+                    news: news,
+                    comments:aux,
+                    auxNews: news
                 }
             case CREATE_NEW:
                 
@@ -170,9 +231,11 @@ export default function reducer(state = initialState, { type, payload }) {
                     ...state
                 }
              case GET_SERVICES:
+                const services = [...payload.services].reverse();
                 return{
                     ...state,
-                    services: payload.services
+                    services: services,
+                    auxServices:services
                 }
             case DELETE_SERVICE:
                 
@@ -186,12 +249,15 @@ export default function reducer(state = initialState, { type, payload }) {
                 }
             case DELETE_EVENT:
                 return {
-                    ...state
+                    ...state,
+                    
                 }
              case GET_EVENTS:
+                const events = [...payload.events].reverse();
                 return{
                     ...state,
-                    events: payload.events
+                    events: events,
+                    auxEvents: events
                 }
             case GET_MULTIMEDIA:
                 return{
