@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Modal, Button, Container, Row, Col , Alert} from 'react-bootstrap';
 import {updateEmployee,formEmployee, dataForm} from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
-const Moda = ({title, children, titleB, action ,isC = false, cb , name}) => {
+const Moda = ({title, children, titleB, action ,isC = false, cb = (name)=>{console.log(name)} , name = "cb"}) => {
     const [show, setShow] = useState(false);
     const [alert,setAlert] = useState(false)
     const dispatch = useDispatch();
