@@ -16,22 +16,28 @@ const Reports = ()=>{
     const [dataR, setDataR] = useState([])
     const [comment, setComment] = useState('')
     const handleComment = (e)=>{
-      console.log(e.target.id)
       setComment(e.target.id)
     }
     const handleClick = (e)=>{
-      console.log(e.target.id)
       let res = news.filter(item=>item.id===e.target.id)
-      console.log(res)
-      console.log(res)
-     setDataR({likes:res[0].userLikes, dislikes:res[0].userDislikes})
+    res.length>0&& setDataR({likes:res[0].userLikes, dislikes:res[0].userDislikes})
     }
     useEffect(()=>{
         if(!news.length>0){
             console.log("getNews")
         dispatch(getNews())
+        }else if(data.length<=0){
+          let aux = []
+          news.forEach(item=>{
+            
+            item.comments&&item.comments.forEach(comment=>aux.push(JSON.parse(comment)))
+          })
+          aux.length>0&&setData(aux)
+          console.log("entre")
+          console.log(aux)
         }
-    },[news, comment])
+        console.log(data)
+    },[news, comment,dispatch,data])
     return(
         <Container style = {{marginLeft:'80px',marginTop:'20px'}}>
         <Row style = {{alignItems:"center"}}>
@@ -62,7 +68,7 @@ const Reports = ()=>{
       <Modal  title = {"Comentarios"} titleB = {"ver"} action = {{create:createNew,refresh:getNews}} isC = {true} cb = {handleComment} name = {item.name}>
         <Tables  headers = {["Noticia","Comentario"]}>
         {
-            news.map((item,index)=>
+            data.map((item,index)=>
                
                   item.name == comment?<tr key = {index}>
                 <td key = {index}> 
